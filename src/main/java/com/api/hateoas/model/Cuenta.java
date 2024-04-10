@@ -19,7 +19,7 @@ public class Cuenta {
     @Column(length = 20, nullable = false, unique = true)
     private String numeroDeCuenta;
 
-    private float balance;
+    private float monto;
 
     //Constructor con id y numero de cuenta como parametros
 

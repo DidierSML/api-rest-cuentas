@@ -15,7 +15,7 @@ public class CuentaController {
 
     private final CuentaService cuentaService;
 
-    //Guardar cuenta Controller
+    //Guardar cuenta
     @PostMapping("guardarCuenta")
     @ResponseStatus(HttpStatus.CREATED)
     public Cuenta guardarCuenta (@RequestBody Cuenta cuentaNueva){
@@ -23,10 +23,31 @@ public class CuentaController {
         return cuentaService.guardarCuenta(cuentaNueva);
     }
 
-    //Obtener/Listar todas las cuentas Controller
+    //Obtener/Listar todas las cuentas
     @GetMapping("obtenerCuentas")
     @ResponseStatus(HttpStatus.OK)
     public List<Cuenta> obtenerCuentas (){
         return  cuentaService.obtenerCuentas();
+    }
+
+    //Obtener cuenta por Id
+    @GetMapping("{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Cuenta obtenerCuentaPorId (@PathVariable (value = "id") Integer id){
+        return cuentaService.obtenerCuentaPorId(id);
+    }
+
+    //Actualizar Cuenta
+    @PutMapping("{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Cuenta acutalizarCuenta (@PathVariable (value = "id") Integer id, @RequestBody Cuenta cuentaExistente){
+        return cuentaService.acutalizarCuenta(id,cuentaExistente);
+    }
+
+    //Eliminar Cuenta
+    @DeleteMapping("{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void eliminarCuenta (@PathVariable (value = "id") Integer id){
+        cuentaService.eliminarCuenta(id);
     }
 }

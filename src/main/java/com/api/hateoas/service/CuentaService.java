@@ -57,6 +57,29 @@ public class CuentaService {
         cuentaRepository.deleteById(id);
     }
 
+    //Depositar Dinero Cuenta
+    public Cuenta depositarDineroCuenta (Float montoASumar, Integer id){
+
+        //Acceda al método personalizado del repositorio -actualizarMonto->
+        cuentaRepository.actualizarMonto(montoASumar, id);
+
+        //Retorne la cuenta por Id al -Controlador <-
+        return cuentaRepository.findById(id).get();
+
+    }
+
+
+    //Retirar Dinero Cuenta
+    public Cuenta retirarDineroCuenta (Float montoARestar, Integer id){
+
+        //Acceda al método personalizado del repositorio - actulizarMonto (el monto es Negativo) ->
+        cuentaRepository.actualizarMonto(- montoARestar, id);
+
+        //Retorne la cuenta por Id al -Controlador <-
+        return cuentaRepository.findById(id).get();
+
+    }
+
 
 
 }

@@ -21,11 +21,19 @@ public class Cuenta extends RepresentationModel<Cuenta> {
     @Column(length = 20, nullable = false, unique = true)
     private String numeroDeCuenta;
 
-    private float monto;
+    @Column
+    private Float monto;
 
-    //Constructor con id y numero de cuenta como parametros
+    //Constructor con (Id y numeroDeCuenta) como parámetros
     public Cuenta(Integer id, String numeroDeCuenta) {
         this.id = id;
         this.numeroDeCuenta = numeroDeCuenta;
     }
+
+    //Constructor con (Id y monto) como parámetros para los métodos -depositarCuenta- y -retirarCuenta-
+    public Cuenta(Integer id, float monto){
+        this.id = id;
+        this.monto = monto;
+    }
+
 }

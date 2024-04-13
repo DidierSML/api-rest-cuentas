@@ -1,6 +1,7 @@
 package com.api.hateoas.controller;
 
 import com.api.hateoas.model.Cuenta;
+import com.api.hateoas.model.Monto;
 import com.api.hateoas.service.CuentaService;
 import lombok.AllArgsConstructor;
 import org.springframework.hateoas.IanaLinkRelations;
@@ -104,13 +105,48 @@ public class CuentaController {
     }
 
     //Eliminar Cuenta
-    @DeleteMapping("{id}")
+    @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void eliminarCuenta (@PathVariable (value = "id") Integer id){
 
         cuentaService.eliminarCuenta(id);
 
     }
+
+    //------- Métodos especiales-------
+
+    //Depositar Monto - Usamos PatchMapping - para modificar un solo dato de la Tabla y no todos
+    @PatchMapping("depositar/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Cuenta depositarDineroCuenta (@PathVariable (value = "id") Integer id, @RequestBody Monto monto){
+
+        Cuenta montoADepositar = cuentaService.depositarDineroCuenta(monto.getMonto(),id);
+
+        //Obtenemos el enlace de la cuenta actualizada y de las cuentas en general
+        montoADepositar.add(linkTo(methodOn(CuentaController.class).obtenerCuentaPorId(montoADepositar.getId())).withSelfRel());
+        montoADepositar.add(linkTo(WebMvcLinkBuilder.methodOn(CuentaController.class).obtenerCuentas()).withRel(IanaLinkRelations.COLLECTION));
+        //Agregamos link de Depósitos
+        montoADepositar.add(linkTo(methodOn(CuentaController.class).depositarDineroCuenta(montoADepositar.getId(), null)).withRel("depositos"));
+
+        return montoADepositar;
+    }
+
+    //Retirar Monto
+    @PatchMapping("retirar/{id}")
+    @ResponseStatus(HttpStatus.OK)
+    public Cuenta retirarDineroCuenta (@PathVariable (value = "id") Integer id, @RequestBody Monto monto){
+
+        Cuenta montoARetirar = cuentaService.retirarDineroCuenta(monto.getMonto(),id);
+
+        montoARetirar.add(linkTo(methodOn(CuentaController.class).obtenerCuentaPorId(montoARetirar.getId())).withSelfRel());
+        montoARetirar.add(linkTo(WebMvcLinkBuilder.methodOn(CuentaController.class).obtenerCuentas()).withRel(IanaLinkRelations.COLLECTION));
+
+        montoARetirar.add(linkTo(methodOn(CuentaController.class).retirarDineroCuenta(montoARetirar.getId(),null)).withRel("retiros"));
+
+        return montoARetirar;
+    }
+
+
 }
 
 /**

@@ -104,23 +104,26 @@ public class CuentaService {
 
 
 }
+/*
 
-//    public Cuenta guardarCuenta(Cuenta cuenta) {
-//        // Verificar si la cuenta es válida antes de guardarla
-//        if (cuenta.getNumeroDeCuenta() == null || cuenta.getMonto() == null) {
-//            throw new CuentaOperationException("La cuenta proporcionada es inválida");
-//        }
-//
-//        // Intentar guardar la cuenta en el repositorio
-//        try {
-//            return cuentaRepository.save(cuenta);
-//        } catch (Exception e) {
-//            // Manejar cualquier error que pueda ocurrir durante la operación de guardado
-//            throw new CuentaOperationException("Error al guardar la cuenta: " + e.getMessage());
-//        }
-//    }
+    public Cuenta guardarCuenta(Cuenta cuenta) {
+    // Verificar si la cuenta es válida antes de guardarla
+    if (cuenta.getNumeroDeCuenta() == null || cuenta.getMonto() == null) {
+          throw new CuentaOperationException("La cuenta proporcionada es inválida");
+     }
 
-//    @org.springframework.web.bind.annotation.ExceptionHandler(InvalidCuentaIdException.class)
-//    public ResponseEntity<String> handleInvalidCuentaIdException(InvalidCuentaIdException ex) {
-//        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
-//    }
+     // Intentar guardar la cuenta en el repositorio
+     try {
+         return cuentaRepository.save(cuenta);
+     } catch (Exception e) {
+         // Manejar cualquier error que pueda ocurrir durante la operación de guardado
+          throw new CuentaOperationException("Error al guardar la cuenta: " + e.getMessage());
+       }
+    }
+
+    @org.springframework.web.bind.annotation.ExceptionHandler(InvalidCuentaIdException.class)
+    public ResponseEntity<String> handleInvalidCuentaIdException(InvalidCuentaIdException ex) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+    }
+
+ */

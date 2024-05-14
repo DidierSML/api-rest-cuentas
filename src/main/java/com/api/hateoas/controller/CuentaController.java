@@ -37,7 +37,7 @@ public class CuentaController {
         //El Segundo direccionará de manera dinámica al método que Colecciona todas las cuentas de forma dinámica
         cuentaHateoas.add(linkTo(WebMvcLinkBuilder.methodOn(CuentaController.class).obtenerCuentas()).withRel(IanaLinkRelations.COLLECTION));
 
-        //Finalmente se retornará la cuenta guardada + los dos enlaces anteriores
+        //Finalmente, se retornará la cuenta guardada + los dos enlaces anteriores
         return cuentaService.guardarCuenta(cuentaNueva);
     }
 

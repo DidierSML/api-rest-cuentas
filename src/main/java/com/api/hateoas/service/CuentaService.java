@@ -39,9 +39,9 @@ public class CuentaService {
 
     //Método Obtener cuenta * id
 
-    /*public Cuenta obtenerCuentaPorId (Integer id) throws NotFoundCusotmeException{
+    /*public Cuenta obtenerCuentaPorId (Integer id) throws NotFoundCustomException{
             if(!cuentaRepository.existById(id)){
-                throw new NotFoundCustomeException("Esta Cuenta no existe en nuestra BD");
+                throw new NotFoundCustomException("Esta Cuenta no existe en nuestra BD");
                 }
             cuentaRepository.deleteById(id);
     */
@@ -101,7 +101,6 @@ public class CuentaService {
         return cuentaRepository.findById(id).get();
 
     }
-
 
 }
 /*

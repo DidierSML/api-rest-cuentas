@@ -9,7 +9,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 //Aún cuando no se vean usos, esta (C) Centraliza las excepciones y ejecuta el manejo de las mismas
 @RestControllerAdvice
-public class CustomeExceptionHandler extends ResponseEntityExceptionHandler {
+public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
 
     //Ejecuta el manejo de la excepción al no encontrar por (Id)
     @ExceptionHandler(CuentaNotFoundException.class)

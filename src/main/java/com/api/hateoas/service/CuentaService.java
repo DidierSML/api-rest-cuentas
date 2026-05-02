@@ -19,26 +19,22 @@ public class CuentaService {
     //Inyectando CuentaRepository Interface
     private final CuentaRepository cuentaRepository;
 
-
-
-    //Método Guardar Cuenta
+    //Método -Guardar Cuenta-
     public Cuenta guardarCuenta (Cuenta cuenta){
 
         if (cuenta.getNumeroDeCuenta() == null || cuenta.getMonto() == null) {
             throw new CuentaOperationException("El número de cuenta y el monto son campos obligatorios");
         }
-
         return cuentaRepository.save(cuenta);
     }
 
-    //Método Obtener todas las cuentas
+    //Método -Obtener todas las cuentas-
     public List<Cuenta> obtenerCuentas(){
 
         return cuentaRepository.findAll();
     }
 
-    //Método Obtener cuenta * id
-
+    //Método -Obtener cuenta * id-
     /*public Cuenta obtenerCuentaPorId (Integer id) throws NotFoundCustomException{
             if(!cuentaRepository.existById(id)){
                 throw new NotFoundCustomException("Esta Cuenta no existe en nuestra BD");
@@ -52,7 +48,7 @@ public class CuentaService {
 
     }
 
-    //Método Actualizar cuenta * id
+    //Método -Actualizar cuenta * id-
     public Cuenta acutalizarCuenta (Integer id, Cuenta cuenta){
 
         if (cuenta.getNumeroDeCuenta() == null || cuenta.getMonto() == null || id == null) {
@@ -70,7 +66,7 @@ public class CuentaService {
 
     }
 
-    //Método Eliminar cuenta * id
+    //Método -Eliminar cuenta * id-
     public void eliminarCuenta (Integer id){
 
         if(!cuentaRepository.existsById(id)){
@@ -79,7 +75,9 @@ public class CuentaService {
         cuentaRepository.deleteById(id);
     }
 
-    //Depositar Dinero Cuenta --------------- Métodos Especiales------------------
+    //------------------------ [Métodos Especiales]-------------------------------
+
+    //Depositar Dinero en Cuenta
     public Cuenta depositarDineroCuenta (Float montoASumar, Integer id){
 
         //Acceda al método personalizado del repositorio -actualizarMonto->
@@ -91,7 +89,7 @@ public class CuentaService {
     }
 
 
-    //Retirar Dinero Cuenta
+    //Retirar Dinero de la Cuenta
     public Cuenta retirarDineroCuenta (Float montoARestar, Integer id){
 
         //Acceda al método personalizado del repositorio - actualizarMonto (el monto es Negativo) ->

@@ -31,7 +31,7 @@ public class CuentaRepositoryTest {
         // Ejecutar el método a probar
         Cuenta cuentaGuardada = cuentaRepository.save(cuenta);
 
-        // Verificar el resultado
+        // Verificar el resultado -JUnit
         assertEquals(cuenta.getId(), cuentaGuardada.getId());
         assertEquals(cuenta.getNumeroDeCuenta(), cuentaGuardada.getNumeroDeCuenta());
         assertNotNull(cuentaGuardada);
@@ -40,7 +40,7 @@ public class CuentaRepositoryTest {
         // Verificar que el método save haya sido invocado una vez
         Mockito.verify(this.cuentaRepository, Mockito.times(1)).save(cuenta);
 
-        // Verificar que el ID de la cuenta guardada es mayor que 0
+        // Verificar que el ID de la cuenta guardada es mayor que 0 -Junit
         assertTrue(cuentaGuardada.getId() > 0);
     }
 }
